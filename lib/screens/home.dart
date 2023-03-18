@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medical_app/controller/mycontroller.dart';
 import 'package:medical_app/model/datalist.dart';
+import 'package:medical_app/screens/doctors.dart';
 import 'package:medical_app/widgets/bottom_nev.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  MyController controller =Get.put(MyController());
   bool clk = true;
   @override
   Widget build(BuildContext context) {
@@ -57,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
-
+                //Second Section(Clinic & Home card)
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 15),
                   child: Row(
@@ -171,6 +175,7 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w500),
                 ),
 
+                //Third Section (Symptoms Card)
                 Container(
                   height: 50,
                   margin: EdgeInsets.symmetric(vertical: 15),
@@ -209,6 +214,8 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black,
                       fontWeight: FontWeight.w500),
                 ),
+
+                //Forth Section (Doctor Card)
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 15),
                   child: GridView.builder(
@@ -222,58 +229,64 @@ class _HomePageState extends State<HomePage> {
                     ),
                     itemCount: doctors.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        color: Colors.white,
-                        child: Container(
-                          margin: EdgeInsets.only(top: 15),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                "${doctors[index].emoji}",
-                                height: 80,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, top: 10, right: 15, bottom: 5),
-                                child: Text(
-                                  "${doctors[index].text}",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
+                      return InkWell(
+                        onTap: (){
+                            Get.to(Doctors());
+                            controller.addToCart(doctors[index]);
+                        },
+                        child: Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          color: Colors.white,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 15),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "${doctors[index].emoji}",
+                                  height: 80,
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Text(
-                                  "${doctors[index].details}",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, top: 10, right: 15, bottom: 5),
+                                  child: Text(
+                                    "${doctors[index].text}",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                width: 50,
-                                padding: EdgeInsets.all(5),
-                                margin: EdgeInsets.symmetric(vertical: 10),
-                                decoration: BoxDecoration(
-                                  color: Color(0xfffff8ea),
-                                  borderRadius: BorderRadius.circular(50)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 15),
+                                  child: Text(
+                                    "${doctors[index].details}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset("assets/images/star.png",height: 12,),
-                                    Text(" ${doctors[index].rate}",style: TextStyle(fontSize: 12,),)
-                                  ],
+                                Container(
+                                  width: 50,
+                                  padding: EdgeInsets.all(5),
+                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xfffff8ea),
+                                    borderRadius: BorderRadius.circular(50)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset("assets/images/star.png",height: 12,),
+                                      Text(" ${doctors[index].rate}",style: TextStyle(fontSize: 12,),)
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );

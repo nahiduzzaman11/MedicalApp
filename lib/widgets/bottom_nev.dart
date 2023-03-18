@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:medical_app/screens/home.dart';
 import 'package:medical_app/screens/schedule.dart';
 
 class Bottom_Nev extends StatefulWidget {
@@ -29,6 +31,7 @@ class _Bottom_NevState extends State<Bottom_Nev> {
                 onTap: (){
                   setState(() {
                     i = 1;
+                    Get.offAll(HomePage());
                   });
                 },
                 child: Column(
@@ -53,10 +56,10 @@ class _Bottom_NevState extends State<Bottom_Nev> {
               ),
               InkWell(
                 onTap: (){
-                  i=3;
-                  setState(() {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Schedule()));
-                  });
+                   setState(() {
+                     i=3;
+                     Get.to(Schedule());
+                   });
                 },
                 child: Column(
                   children: [
