@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:medical_app/controller/mycontroller.dart';
 import 'package:medical_app/model/datalist.dart';
+import 'package:get/get.dart';
+import 'package:medical_app/screens/home.dart';
 
 class Doctors extends StatelessWidget {
   Doctors({Key? key}) : super(key: key);
 
+  MyController controller = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,10 +28,16 @@ class Doctors extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                            size: 20,
+                          InkWell(
+                            onTap: (){
+                              controller.removeFromCart(0);
+                              Get.offAll(HomePage());
+                            },
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                           ),
                           Column(
                             children: [
@@ -35,14 +45,14 @@ class Doctors extends StatelessWidget {
                                 backgroundColor: Colors.transparent,
                                 maxRadius: 30,
                                 child: Image.asset(
-                                  "assets/images/male.png",
+                                  "${controller.select.first.emoji}",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                               Container(
                                 padding: EdgeInsets.all(10),
                                 child: Text(
-                                  "Dr. Viola Dunn",
+                                  "${controller.select.first.text}",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -51,7 +61,7 @@ class Doctors extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  "Therapist",
+                                  "${controller.select.first.details}",
                                   style: TextStyle(
                                       color: Colors.white54,
                                       fontSize: 14,
@@ -125,7 +135,7 @@ class Doctors extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: Text(
-                          "Dr. Viola Dunn's is an experienced speciallist who is constantly working on improving her skills.",
+                          "${controller.select.first.about}",
                           style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
                       ),
