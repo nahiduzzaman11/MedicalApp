@@ -82,9 +82,3 @@ class BottomNev{
   BottomNev({required this.text,required this.icon});
 }
 
-List<BottomNev> nev = [
-  BottomNev(text: "Home", icon: Icon(Icons.home)),
-  BottomNev(text: "Messages", icon: Icon(Icons.sms_rounded)),
-  BottomNev(text: "Schedule", icon: Icon(Icons.calendar_month_sharp)),
-  BottomNev(text: "Settings", icon: Icon(Icons.settings_rounded)),
-];

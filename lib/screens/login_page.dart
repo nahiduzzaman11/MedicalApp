@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_app/constant/strings_values.dart';
-import 'package:medical_app/screens/home.dart';
+import 'package:medical_app/screens/dashboard.dart';
 import 'package:medical_app/screens/register_page.dart';
 import 'package:medical_app/widgets/custom_button.dart';
 import 'package:medical_app/widgets/custom_text_field.dart';
@@ -73,8 +73,8 @@ class _LogInPageState extends State<LogInPage> {
                       Checkbox(
                         value: isClick,
                         onChanged: (value) {
-                          isClick = !isClick;
                           setState(() {
+                            isClick = !isClick;
                           });
                         },
                       ),
@@ -88,7 +88,7 @@ class _LogInPageState extends State<LogInPage> {
                       backgroundColor: 0xff272727,
                       foregroundColor: 0xffffffff,
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),),);
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DashBoard(),),);
                       },
                     ),
                   ],

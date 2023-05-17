@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_app/constant/strings_values.dart';
-import 'package:medical_app/screens/home.dart';
-import 'package:medical_app/screens/login_page.dart';
+import 'package:medical_app/screens/dashboard.dart';
 import 'package:medical_app/widgets/custom_button.dart';
 import 'package:medical_app/widgets/custom_text_field.dart';
 import 'package:medical_app/widgets/others_options.dart';
@@ -55,7 +54,7 @@ class RegisterPage extends StatelessWidget {
                 Row(
                   children: [
                     Custom_Button(text: "Sign Up", backgroundColor: 0xff272727, foregroundColor: 0xffffffff, onTap:() {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage(),),);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DashBoard(),),);
                     },),
                   ],
                 ),
@@ -74,11 +73,7 @@ class RegisterPage extends StatelessWidget {
                     InkWell(
                       autofocus: false,
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const LogInPage(),
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
                       child: const Text(
                         "SignIn Now",
